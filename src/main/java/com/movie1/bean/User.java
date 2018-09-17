@@ -3,9 +3,7 @@ package com.movie1.bean;
 import com.alibaba.fastjson.JSON;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,7 +12,7 @@ import java.util.Date;
 @Entity
 @DynamicUpdate
 @DynamicInsert
-public class User {
+public class User{
     //自增ID
     @Id
     @GeneratedValue

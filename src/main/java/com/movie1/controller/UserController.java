@@ -5,8 +5,12 @@ import com.movie1.bean.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.movie1.common.exception.*;
+import com.movie1.common.jwt.*;
 
-import java.util.List;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -16,16 +20,6 @@ public class UserController extends BaseController{
     private UserService userService;
 
     /**
-     * 查找所有
-     * @return
-     */
-    @GetMapping("/lists")
-    public Map<String, Object> findUserAll(){
-        List<User> userList = userService.findAll();
-        return handleResponseData(0, userList);
-    }
-
-    /**
      * 登录
      * @return
      */
@@ -33,9 +27,19 @@ public class UserController extends BaseController{
     public Map<String, Object> login(@RequestParam("username") String username, @RequestParam("password") String password){
         User user = userService.login(username, password);
         if(user == null) {
-            return handleResponseData(-1,null, "用户名不存在或密码不正确");
+            throw new CommonException(300100, "用户名不存在或密码不正确");
         }
-        return handleResponseData(0, user);
+        Audience audience = new Audience();
+        String jwtToken = JwtHelper.createJWT(user.getUsername(),
+                user.getUserid(),
+                audience.getClientId(),
+                audience.getName(),
+                audience.getExpiresSecond()*1000,
+                audience.getBase64Secret());
+        Map<String , Object> info = new HashMap<String , Object>();
+        info.put("authorization", jwtToken);
+        info.put("user", user);
+        return handleResponseData(0, info);
     }
 
     /**
@@ -45,6 +49,24 @@ public class UserController extends BaseController{
     @PostMapping("/register")
     public Map<String, Object> register(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("email") String email){
         User user = userService.register(username, password, email);
+        if (user == null) {
+            throw new CommonException(300101, "该username已存在, 请换一个昵称");
+        }
         return handleResponseData(0, user);
+    }
+
+    /*
+     *  修改密码
+     *  @return
+     */
+    @PostMapping("/resetPw")
+    public Map<String, Object> resetPw(final ServletRequest req, @RequestParam("password") String password){
+        final HttpServletRequest request = (HttpServletRequest) req;
+        Object username = req.getAttribute("username");
+        Boolean result = userService.resetPw((String) username, password);
+        if (!result) {
+            throw new CommonException(300103, "用户不存在，请重新登录");
+        }
+        return handleResponseData(0, result);
     }
 }
