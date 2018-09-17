@@ -2,7 +2,6 @@ package com.movie1.service;
 
 import com.movie1.bean.User;
 import com.movie1.repository.UserRepository;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -45,6 +44,12 @@ public class UserService {
      * 注册
      */
     public User register(String username, String password, String email) {
+        // 判断系统中是否有相同的username
+        List<User> list = null;
+        list = userRepository.findByUsername(username);
+        if (list != null && list.size() != 0) {
+            return null;
+        }
         User user = new User();
         user.setEmail(email);
         user.setUsername(username);
@@ -54,5 +59,23 @@ public class UserService {
         String md5Pass = DigestUtils.md5DigestAsHex(password.getBytes());
         user.setPassword(md5Pass);
         return userRepository.save(user);
+    }
+
+    /*
+     * 修改密码
+     */
+    public Boolean resetPw(String username, String pw) {
+        List<User> list = null;
+        list = userRepository.findByUsername(username);
+        if (list == null || list.size() == 0) {
+            // 返回登录失败
+            return false;
+        }
+        // 取用户信息
+        User user = list.get(0);
+
+        String md5Pass = DigestUtils.md5DigestAsHex(pw.getBytes());
+        userRepository.modifyPasswordByUserid(md5Pass, user.getUserid());
+        return true;
     }
 }
