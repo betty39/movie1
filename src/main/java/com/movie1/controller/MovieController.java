@@ -1,7 +1,9 @@
 package com.movie1.controller;
 
 import com.movie1.bean.Movie;
+import com.movie1.bean.Similartab;
 import com.movie1.service.MovieService;
+import com.movie1.service.SimilarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,8 @@ import java.util.Map;
 public class MovieController {
     @Autowired
     private MovieService movieService;
+    @Autowired
+    private SimilarService similarService;
 
     /**
      * 搜索
@@ -28,6 +32,19 @@ public class MovieController {
 
         Map<String , Object> info = new HashMap<String , Object>();
         info.put("movies", movies);
+        return info;
+    }
+
+    /**
+     * 搜索
+     * @return
+     */
+    @PostMapping("/getsimilar")
+    public Map<String, Object> getsimilar(@RequestParam("itemid") Integer itemid){
+        List<Similartab> similars = similarService.getsimilar(itemid);
+
+        Map<String , Object> info = new HashMap<String , Object>();
+        info.put("similars", similars);
         return info;
     }
 }
