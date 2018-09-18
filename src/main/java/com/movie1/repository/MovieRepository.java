@@ -16,6 +16,12 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
      */
     public List<Movie> findByMoviename(String moviename);
 
+    /**
+     * 根据moviename查询
+     * @param moviename
+     * @return
+     */
     List<Movie> findByMovienameLike(String moviename);
+
 
 }
