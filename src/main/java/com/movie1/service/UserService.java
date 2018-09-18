@@ -64,9 +64,9 @@ public class UserService {
     /*
      * 修改密码
      */
-    public Boolean resetPw(String username, String pw) {
+    public Boolean resetPw(int userid, String pw) {
         List<User> list = null;
-        list = userRepository.findByUsername(username);
+        list = userRepository.findByUserid(userid);
         if (list == null || list.size() == 0) {
             // 返回登录失败
             return false;

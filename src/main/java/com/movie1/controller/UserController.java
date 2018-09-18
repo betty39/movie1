@@ -62,8 +62,12 @@ public class UserController extends BaseController{
     @PostMapping("/resetPw")
     public Map<String, Object> resetPw(final ServletRequest req, @RequestParam("password") String password){
         final HttpServletRequest request = (HttpServletRequest) req;
-        Object username = req.getAttribute("username");
-        Boolean result = userService.resetPw((String) username, password);
+        Object claims = req.getAttribute("claims");
+        if (claims == null) {
+            throw new CommonException(401, "用户token验证失败，请重新登录");
+        }
+        Object userid = req.getAttribute("userid");
+        Boolean result = userService.resetPw((int) userid, password);
         if (!result) {
             throw new CommonException(300103, "用户不存在，请重新登录");
         }

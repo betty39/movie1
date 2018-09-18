@@ -32,7 +32,7 @@ public class JwtHelper {
     /**
      * 构建jwt
      */
-    public static String createJWT(String username, int userId,
+    public static String createJWT(String username, int userid,
                                    String audience, String issuer, long TTLMillis, String base64Security)
     {
         // 签名算法 ，将对token进行签名
@@ -47,7 +47,7 @@ public class JwtHelper {
         Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
 
         // Let's set the JWT Claims
-        JwtBuilder builder = Jwts.builder().setId(username)
+        JwtBuilder builder = Jwts.builder().setId(Integer.toString(userid))
                 .setIssuedAt(now)
                 .setSubject(audience)
                 .setIssuer(issuer)
