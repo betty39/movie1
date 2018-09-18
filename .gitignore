@@ -6,6 +6,12 @@
 
 .DS_Store
 
-target/classes
+target
 
 src/main/resources/application.yml
+
+movie.iml
+movie1.iml
+
+mvnw
+mvnw.cmd
