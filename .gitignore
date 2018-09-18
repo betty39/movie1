@@ -1,0 +1,11 @@
+# vim swap files
+*.swp
+
+# phpstorm project files
+.idea
+
+.DS_Store
+
+target/classes
+
+src/main/resources/application.yml
