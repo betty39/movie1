@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/restful_recommend?useSSL=false
     username: root
-    password: betty391427
+    password: shiwen1996
   jpa:
     hibernate:
       ddl-auto: update
