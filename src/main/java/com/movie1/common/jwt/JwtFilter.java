@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import com.movie1.common.exception.CommonException;
 import io.jsonwebtoken.*;
+import javax.security.auth.login.LoginException;
 
 public class JwtFilter extends GenericFilterBean {
 
@@ -48,27 +49,23 @@ public class JwtFilter extends GenericFilterBean {
             response.setStatus(HttpServletResponse.SC_OK);
             chain.doFilter(req, res);
         } else {
+            Claims claims;
             if (null == accessToken) {
                 response.setStatus(401);
-                throw new CommonException(401, "无token，请重新登录");
+                claims = null;
+                // throw new CommonException(401, "无token，请重新登录");
             } else {
                 // 从Redis 中查看 token 是否过期
-                Claims claims;
-                try {
-                    Audience audience = new Audience();
-                    claims = JwtHelper.parseJWT(accessToken, audience.getBase64Secret());
-                } catch (ExpiredJwtException e) {
-                    response.setStatus(401);
-                    throw new CommonException(401, "token失效，请重新登录");
-                } catch (SignatureException se) {
-                    response.setStatus(401);
-                    throw new CommonException(401, "token令牌错误");
+                Audience audience = new Audience();
+                claims = JwtHelper.parseJWT(accessToken, audience.getBase64Secret());
+                if (claims != null) {
+                    // throw new CommonException(401, "token 错误");
+                    String userid = claims.getId();
+                    request.setAttribute("userid", Integer.parseInt(userid));
                 }
-
-                String username = claims.getId();
-                request.setAttribute("username", username);
-                chain.doFilter(req, res); // 通过filter进入controller
             }
+            request.setAttribute("claims", claims);
+            chain.doFilter(req, res); // 通过filter进入controller
         }
 
     }
