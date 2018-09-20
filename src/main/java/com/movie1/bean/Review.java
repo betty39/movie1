@@ -18,12 +18,11 @@ public class Review {
     @Id
     @GeneratedValue
     private Integer reviewid;
-
-    // @Column(name="userid",insertable=false,updatable=false)
     private Integer userid;
 
     @Column(name="movieid",insertable=false,updatable=false)
     private Integer movieid;
+
     private String content;
     private Double star;
     private Date reviewtime;

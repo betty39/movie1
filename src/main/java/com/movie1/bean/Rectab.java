@@ -23,12 +23,7 @@ public class Rectab{
     @Column(name="movieid",insertable=false,updatable=false)
     private Integer movieid;
 
-    @Column(name="userid",insertable=false,updatable=false)
     private Integer userid;
-
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "userid",referencedColumnName = "userid")
-    private User user;
 
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "movieid",referencedColumnName = "movieid")
@@ -54,19 +49,8 @@ public class Rectab{
         return userid;
     }
 
-    public void setUserid(){
+    public void setUserid(Integer userid){
         this.userid=userid;
-    }
-
-
-
-
-    public User getUser(){
-        return user;
-    }
-
-    public void setUser(User user){
-        this.user=user;
     }
 
 
@@ -80,15 +64,6 @@ public class Rectab{
 
 
 
-  /*  @ManyToOne()
-    private Set<Movie> movieList;
-    public Set<Movie> getMovie() {
-        return movieList;
-    }
-
-    public void setMovie(Set<Movie> movieList) {
-        this.movieList = movieList;
-    }*/
 
     @Override
     public String toString() {

@@ -3,7 +3,7 @@ package com.movie1.repository;
 
 import com.movie1.bean.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+
 
 import java.util.List;
 

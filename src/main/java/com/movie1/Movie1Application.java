@@ -25,6 +25,8 @@ public class Movie1Application {
         List<String>  urlPatterns = new ArrayList();
         urlPatterns.add("/user/resetPw");
         urlPatterns.add("/profile/lists");
+        urlPatterns.add("/profile/review");
+        urlPatterns.add("/profile/rectab");
         registrationBean.addUrlPatterns(urlPatterns.toArray(new String[urlPatterns.size()]));
         return registrationBean;
     }
