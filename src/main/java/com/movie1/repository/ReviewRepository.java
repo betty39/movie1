@@ -17,6 +17,7 @@ public interface ReviewRepository extends JpaRepository<Review,Integer> {
      * @param movieid
      * @return
      */
-
     public List<Review> findByMovieid(int movieid);
+
+    public List<Review> findByUseridOrderByReviewidDesc(int userid);
 }

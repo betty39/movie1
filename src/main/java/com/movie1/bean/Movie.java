@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 @Entity
 @DynamicUpdate
@@ -58,8 +59,9 @@ public class Movie {
         return numrating;
     }
 
-    public Date getShowyear() {
-        return showyear;
+    public String getShowyear() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(showyear);
     }
 
     public String getPicture() {

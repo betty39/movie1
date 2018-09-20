@@ -1,6 +1,7 @@
 package com.movie1.repository;
 
 import com.movie1.bean.Moviecategory;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +16,6 @@ public interface MoviecategoryRepository extends JpaRepository<Moviecategory, In
      * @param categoryid
      * @return
      */
-    public List<Moviecategory> findByCategoryid(int categoryid);
+    public List<Moviecategory> findByCategoryid(int categoryid, Pageable pageable);
 
 }
