@@ -61,7 +61,7 @@ public class Movie {
 
     public String getShowyear() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return sdf.format(showyear);
+        return showyear != null ? sdf.format(showyear) : "";
     }
 
     public String getPicture() {
