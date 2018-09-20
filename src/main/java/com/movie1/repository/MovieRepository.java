@@ -21,7 +21,7 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
      * @param moviename
      * @return
      */
-    List<Movie> findByMovienameLike(String moviename);
+    List<Movie> findFirst10ByMovienameLikeOrOrderByNationDesc(String moviename);
 
     /**
      *

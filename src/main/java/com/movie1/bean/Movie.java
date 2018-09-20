@@ -25,6 +25,7 @@ public class Movie {
 
     private String director;
 
+
     private Date showyear;
 
     private String picture;
