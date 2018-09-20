@@ -9,5 +9,14 @@ import java.util.List;
 
 
 public interface ReviewRepository extends JpaRepository<Review,Integer> {
+
     public List<Review> findByUserid(int userid);
+
+    /**
+     * 根据movieid查询
+     * @param movieid
+     * @return
+     */
+
+    public List<Review> findByMovieid(int movieid);
 }
