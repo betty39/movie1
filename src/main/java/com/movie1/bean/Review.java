@@ -6,6 +6,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 
@@ -54,8 +55,9 @@ public class Review {
         return star;
     }
 
-    public Date getReviewtime() {
-        return reviewtime;
+    public String getReviewtime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(reviewtime);
     }
 
     public void setReviewid(Integer reviewid) {
