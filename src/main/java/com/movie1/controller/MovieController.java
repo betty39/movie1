@@ -67,8 +67,8 @@ public class MovieController {
      * @return
      */
     @PostMapping("/movielist")
-    public Map<String,Object> movieList(@RequestParam("categoryid") int categoryid){
-        List<Moviecategory> movieList = moviecategoryService.searchTypeList(categoryid);
+    public Map<String,Object> movieList(@RequestParam("categoryid") int categoryid, @RequestParam("page") int page, @RequestParam("size") int size){
+        List<Moviecategory> movieList = moviecategoryService.searchTypeList(categoryid, page, size);
         Map<String , Object> info = new HashMap<String , Object>();
         info.put("movieList", movieList);
         return info;
