@@ -45,7 +45,7 @@ public class ProfileService {
     //根据userid查找到收藏列表
     public List<Review> profileGetReviewList(int userid){
         List<Review> review =null;
-        review = reviewRepository.findByUserid(userid);
+        review = reviewRepository.findByUseridOrderByReviewidDesc(userid);
         return review;
     }
 
