@@ -55,7 +55,7 @@ public class UserController extends BaseController{
         return handleResponseData(0, user);
     }
 
-    /*
+    /**
      *  修改密码
      *  @return
      */
