@@ -24,6 +24,8 @@ public class Movie {
 
     private String director;
 
+    private String nation;
+
     private Date showyear;
 
     private String picture;
@@ -59,6 +61,10 @@ public class Movie {
 
     public String getDirector() {
         return director;
+    }
+
+    public String getNation() {
+        return nation;
     }
 
     @Override

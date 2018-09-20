@@ -19,7 +19,7 @@ public class MovieService {
      */
     public List<Movie> search(String moviename) {
         List<Movie> list = null;
-        list = movieRepository.findByMovienameLike("%"+moviename+"%");
+        list = movieRepository.findFirst5ByMovienameLike("%"+moviename+"%");
         if (list == null || list.size() == 0) {
             // 返回登录失败
             return null;
