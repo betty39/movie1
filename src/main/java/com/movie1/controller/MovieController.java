@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/movie")
-public class MovieController {
+public class MovieController extends BaseController{
     @Autowired
     private MovieService movieService;
     @Autowired
@@ -33,7 +33,7 @@ public class MovieController {
 
         Map<String , Object> info = new HashMap<String , Object>();
         info.put("movies", movies);
-        return info;
+        return handleResponseData(0, info);
     }
 
     /**
@@ -46,7 +46,7 @@ public class MovieController {
 
         Map<String , Object> info = new HashMap<String , Object>();
         info.put("similars", similars);
-        return info;
+        return handleResponseData(0, info);
     }
 
     /**
@@ -59,7 +59,7 @@ public class MovieController {
 
         Map<String , Object> info = new HashMap<String , Object>();
         info.put("category_tab", category_tab);
-        return info;
+        return handleResponseData(0, info);
     }
 
     /**
@@ -71,7 +71,7 @@ public class MovieController {
         List<Moviecategory> movieList = moviecategoryService.searchTypeList(categoryid, page, size);
         Map<String , Object> info = new HashMap<String , Object>();
         info.put("movieList", movieList);
-        return info;
+        return handleResponseData(0, info);
     }
 
     /**
@@ -100,6 +100,6 @@ public class MovieController {
         Map<String,Object> info = new HashMap<String,Object>();
         info.put("moviedescription",moviedescription);
         info.put("reviewList",reviewList);
-        return info;
+        return handleResponseData(0, info);
     }
 }

@@ -57,7 +57,7 @@ public class Review {
 
     public String getReviewtime() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return sdf.format(reviewtime);
+        return reviewtime != null ? sdf.format(reviewtime) : "";
     }
 
     public void setReviewid(Integer reviewid) {
