@@ -85,6 +85,17 @@ public class ProfileService {
         return rectabRepository.save(rectab);
     }
 
-
-
+    /**
+     * 获取对某个电影的喜欢状态
+     * @param movieid
+     * @return
+     */
+    public Boolean MovieLikeStatus(int movieid, int userid) {
+        Boolean status = false;
+        List<Rectab> info = rectabRepository.findByMovieidAndUserid(movieid, userid);
+        if (info != null && info.size() != 0) {
+            status = true;
+        }
+        return status;
+    }
 }

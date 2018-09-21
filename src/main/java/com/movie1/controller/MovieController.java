@@ -37,7 +37,7 @@ public class MovieController extends BaseController{
     }
 
     /**
-     * 搜索
+     * 相似
      * @return
      */
     @PostMapping("/getsimilar")

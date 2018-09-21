@@ -27,6 +27,8 @@ public class Movie1Application {
         urlPatterns.add("/profile/lists");
         urlPatterns.add("/profile/review");
         urlPatterns.add("/profile/rectab");
+        urlPatterns.add("/profile/ifLikeMovie");
+        urlPatterns.add("/profile/getRecommend");
         registrationBean.addUrlPatterns(urlPatterns.toArray(new String[urlPatterns.size()]));
         return registrationBean;
     }

@@ -19,5 +19,13 @@ public interface ReviewRepository extends JpaRepository<Review,Integer> {
      */
     public List<Review> findByMovieid(int movieid);
 
+    /**
+     * 根据movieid查询评论逆序
+     * @param movieid
+     * @return
+     */
+    public List<Review> findByMovieidOrderByReviewidDesc(int movieid);
+
     public List<Review> findByUseridOrderByReviewidDesc(int userid);
+
 }
