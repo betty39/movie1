@@ -24,7 +24,7 @@ public class MovieService {
      */
     public List<Movie> search(String moviename) {
         List<Movie> list = null;
-        list = movieRepository.findFirst10ByMovienameLikeOrOrderByNationDesc("%"+moviename+"%");
+        list = movieRepository.findFirst10ByMovienameLikeOrderByNationDesc("%"+moviename+"%");
         if (list == null || list.size() == 0) {
             // 返回登录失败
             return null;
@@ -49,11 +49,8 @@ public class MovieService {
      */
     public List<Review> reviewList(int movieid){
         List<Review> list = null;
-        list = reviewRepository.findByMovieid(movieid);
+        list = reviewRepository.findByMovieidOrderByReviewidDesc(movieid);
 
         return list;
     }
-
-
-
 }
