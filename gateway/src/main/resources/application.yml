@@ -1,0 +1,15 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8081/eureka/
+spring:
+  application:
+    name: gateway
+server:
+  port: 8086
+zuul:
+  routes:
+    movie-microservice: /movie/**
+    user-microservice: /user/**
+    user-profile-microservice: /profile/**
+    recommend-microservice: /recommend/**
