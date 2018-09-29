@@ -5,13 +5,10 @@
 .idea
 
 .DS_Store
-
-target
-
-src/main/resources/application.yml
-
-movie.iml
-movie1.iml
-
-mvnw
-mvnw.cmd
+### module ###
+discovery/target
+movie-microservice/target
+user-microservice/target
+user-profile-microservice/target
+recommend-microservice/target
+gateway/target

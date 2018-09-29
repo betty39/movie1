@@ -1,6 +1,27 @@
-# movie1
+# SpringCloud
+基于springcloud搭建的微服务程序
 
-## 将项目以maven导入
+## 使用技术
+- 版本：springcloud Camden.SR6
+- 注册中心：eureka
 
-### 若无application.yml文件，则将/src/main/resources/application.yml.sample文件复制到/src/main/resources/application.yml
-### 将/src/main/resources/application.yml中的 url, username, password 换成自己本地数据库
+
+## 项目结构
+- 注册中心 discovery
+- 电影服务 movie-microservice
+- 用户服务 user-microservice
+- 用户个人中心服务 user-profile-microservice
+- 推荐服务 recommend-microservice
+- 网关 gateway
+
+## 启动项目
+
+1. 启动discovery
+2. 启动movie-microservice
+3. 启动user-microservice
+4. 启动user-profile-microservice
+5. 启动recommend-microservice
+6. 启动gateway
+
+## 实现功能
+通过注册中心的配置，可以在gateway模块，访问模块上的接口。
