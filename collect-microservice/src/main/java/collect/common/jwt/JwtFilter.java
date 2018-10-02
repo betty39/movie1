@@ -1,4 +1,4 @@
-package recommend.common.jwt;
+package collect.common.jwt;
 
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class JwtFilter extends GenericFilterBean {
 
@@ -43,6 +41,7 @@ public class JwtFilter extends GenericFilterBean {
         final HttpServletResponse response = (HttpServletResponse) res;
         //等到请求头信息authorization信息
         final String accessToken = request.getHeader("authorization");
+
         if ("OPTIONS".equals(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
             chain.doFilter(req, res);
