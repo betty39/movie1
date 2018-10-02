@@ -43,15 +43,28 @@ public class JwtFilter extends GenericFilterBean {
         final HttpServletResponse response = (HttpServletResponse) res;
         //等到请求头信息authorization信息
         final String accessToken = request.getHeader("authorization");
-        if (null == accessToken) {
-            response.setStatus(401);
-            // throw new CommonException(401, "无token，请重新登录");
+
+        if ("OPTIONS".equals(request.getMethod())) {
+            response.setStatus(HttpServletResponse.SC_OK);
+            chain.doFilter(req, res);
+        } else {
+            Claims claims;
+            if (null == accessToken) {
+                response.setStatus(401);
+                claims = null;
+                // throw new CommonException(401, "无token，请重新登录");
+            } else {
+                // 从Redis 中查看 token 是否过期
+                Audience audience = new Audience();
+                claims = JwtHelper.parseJWT(accessToken, audience.getBase64Secret());
+                if (claims != null) {
+                    // throw new CommonException(401, "token 错误");
+                    String userid = claims.getId();
+                    request.setAttribute("userid", Integer.parseInt(userid));
+                }
+            }
+            request.setAttribute("claims", claims);
             chain.doFilter(req, res); // 通过filter进入controller
         }
-        request.setAttribute("userid", accessToken);
-        Map<String,Object> claims = new HashMap<String,Object>();
-        claims.put("userid", accessToken);
-        request.setAttribute("claims", claims);
-        chain.doFilter(req, res); // 通过filter进入controller
     }
 }

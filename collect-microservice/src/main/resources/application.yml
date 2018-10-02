@@ -9,10 +9,10 @@ spring:
       ddl-auto: update
     show-sql: true
   application:
-    name: recommend-microservice
+    name: collect-microservice
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8081/eureka/
 server:
-  port: 8086
+  port: 8085
