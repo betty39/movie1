@@ -78,4 +78,19 @@ public class UserService {
         userRepository.modifyPasswordByUserid(md5Pass, user.getUserid());
         return true;
     }
+
+    /**
+     * 根据 userid 获取 username
+     */
+    public String getUsername(int userid) {
+        List<User> list = null;
+        list = userRepository.findByUserid(userid);
+        if (list == null || list.size() == 0) {
+            // 返回登录失败
+            return "";
+        }
+        // 取用户信息
+        User user = list.get(0);
+        return user.getUsername();
+    }
 }

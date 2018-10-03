@@ -17,14 +17,9 @@ public class Rectab{
     @GeneratedValue
     private Integer rectabid;
 
-    @Column(name="movieid",insertable=false,updatable=false)
     private Integer movieid;
 
     private Integer userid;
-
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "movieid",referencedColumnName = "movieid")
-    private Movie movie;
 
     public Integer getRectabid(){
         return rectabid;
@@ -49,18 +44,6 @@ public class Rectab{
     public void setUserid(Integer userid){
         this.userid=userid;
     }
-
-
-    public Movie getMovie(){
-        return movie;
-    }
-
-    public void setMovie(Movie movie){
-        this.movie=movie;
-    }
-
-
-
 
     @Override
     public String toString() {

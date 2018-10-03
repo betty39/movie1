@@ -20,17 +20,11 @@ public class Review {
     private Integer reviewid;
     private Integer userid;
 
-    @Column(name="movieid",insertable=false,updatable=false)
     private Integer movieid;
 
     private String content;
     private Double star;
     private Date reviewtime;
-
-
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "movieid",referencedColumnName = "movieid")
-    private Movie movie;
 
     public Review(){}
 
@@ -81,15 +75,6 @@ public class Review {
 
     public void setReviewtime(Date reviewtime) {
         this.reviewtime = reviewtime;
-    }
-
-
-    public void setMovie(Movie movie){
-        this.movie=movie;
-    }
-
-    public Movie getMovie(){
-        return movie;
     }
 
     @Override

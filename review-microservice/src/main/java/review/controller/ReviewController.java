@@ -30,7 +30,7 @@ public class ReviewController extends BaseController{
 
         Map<String,Object> info = new HashMap<String,Object>();
         Object userid = req.getAttribute("userid");
-        List<Review> review =reviewService.profileGetReviewList(Integer.parseInt(String.valueOf(userid)));
+        List<Map<String, Object>> review =reviewService.profileGetReviewList(Integer.parseInt(String.valueOf(userid)));
         info.put("review",review);
         return handleResponseData(0, info);
 

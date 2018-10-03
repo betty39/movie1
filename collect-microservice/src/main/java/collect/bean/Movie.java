@@ -1,22 +1,10 @@
 package collect.bean;
 
 import com.alibaba.fastjson.JSON;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Entity
-@DynamicUpdate
-@DynamicInsert
 public class Movie {
-    //自增ID
-    @Id
-    @GeneratedValue
     private Integer movieid;
 
     private String moviename;
@@ -49,6 +37,34 @@ public class Movie {
 
     public Integer getMovieid() {
         return movieid;
+    }
+
+    public void setMovieid(int movieid){
+        this.movieid = movieid;
+    }
+
+    public void setMoviename(String moviename){
+        this.moviename = moviename;
+    }
+
+    public void setAverating(double averating) {
+        this.averating = averating;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public void setShowyear(Date showyear) {
+        this.showyear = showyear;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public void setNumrating(int numrating) {
+        this.numrating = numrating;
     }
 
     public String getMoviename() {

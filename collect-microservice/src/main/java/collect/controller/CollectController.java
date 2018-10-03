@@ -30,7 +30,7 @@ public class CollectController extends BaseController{
 
         Map<String,Object> info = new HashMap<String,Object>();
         Object userid = req.getAttribute("userid");
-        List<Rectab> rectab =collectService.profileGetRectabList(Integer.parseInt(String.valueOf(userid)));
+        List<Map<String, Object>> rectab =collectService.profileGetRectabList(Integer.parseInt(String.valueOf(userid)));
         info.put("rectab",rectab);
         return handleResponseData(0, info);
 
