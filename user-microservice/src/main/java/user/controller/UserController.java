@@ -72,4 +72,13 @@ public class UserController extends BaseController{
         }
         return handleResponseData(0, result);
     }
+
+    /**
+     * 获取用户昵称信息
+     */
+    @PostMapping("/getUsername")
+    public Map<String, Object> getUsername(@RequestParam("userid")int userid) {
+        String username = userService.getUsername(userid);
+        return handleResponseData(0, username);
+    }
 }

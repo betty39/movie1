@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.http.converter.StringHttpMessageConverter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,5 +32,13 @@ public class CollectMicroserviceApplication {
         urlPatterns.add("/ifLikeMovie");
         registrationBean.addUrlPatterns(urlPatterns.toArray(new String[urlPatterns.size()]));
         return registrationBean;
+    }
+
+    @LoadBalanced
+    @Bean
+    RestTemplate restTemplate(){
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().set(1, new StringHttpMessageConverter());
+        return restTemplate;
     }
 }
