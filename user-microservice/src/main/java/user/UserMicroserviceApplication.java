@@ -28,5 +28,4 @@ public class UserMicroserviceApplication {
         registrationBean.addUrlPatterns(urlPatterns.toArray(new String[urlPatterns.size()]));
         return registrationBean;
     }
-
 }

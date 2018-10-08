@@ -28,6 +28,7 @@ public class RecommendController extends BaseController{
     public Map<String, Object> getRecommend(final ServletRequest req) {
         final HttpServletRequest request = (HttpServletRequest) req;
         Object claims = req.getAttribute("claims");
+
         if (claims == null) {
             throw new CommonException(401, "用户token验证失败，请重新登录");
         }

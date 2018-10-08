@@ -43,7 +43,6 @@ public class JwtFilter extends GenericFilterBean {
         final HttpServletResponse response = (HttpServletResponse) res;
         //等到请求头信息authorization信息
         final String accessToken = request.getHeader("authorization");
-
         if ("OPTIONS".equals(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
             chain.doFilter(req, res);
